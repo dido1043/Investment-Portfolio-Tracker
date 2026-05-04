@@ -3,6 +3,7 @@ package org.ipt.investmentportfoliotrackerapi.data.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.ipt.investmentportfoliotrackerapi.data.enums.TransactionType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

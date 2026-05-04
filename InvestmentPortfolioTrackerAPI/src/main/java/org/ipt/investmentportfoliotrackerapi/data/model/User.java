@@ -3,6 +3,7 @@ package org.ipt.investmentportfoliotrackerapi.data.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.ipt.investmentportfoliotrackerapi.data.enums.AuthenticationType;
 
 @Entity
 @Table(name = "users")
@@ -22,4 +23,10 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = true)
+    private String password;
+
+    @Column(nullable = true)
+    private AuthenticationType authenticationType;
 }
