@@ -6,13 +6,11 @@ import org.ipt.investmentportfoliotrackerapi.data.model.Company;
 import org.ipt.investmentportfoliotrackerapi.repository.CompanyRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import org.modelmapper.ModelMapper;
 
 @Service
 @AllArgsConstructor
 public class CompanyService {
-
     private final CompanyRepository companyRepository;
     private final ModelMapper mapper;
 

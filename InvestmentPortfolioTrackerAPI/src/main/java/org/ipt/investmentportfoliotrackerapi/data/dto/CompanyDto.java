@@ -1,11 +1,14 @@
 package org.ipt.investmentportfoliotrackerapi.data.dto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class CompanyDto {
-    private String tickerSymbol;
+
+    private Long id;
     private String companyName;
     private String industrySector;
+    private String tickerSymbol;
 }
