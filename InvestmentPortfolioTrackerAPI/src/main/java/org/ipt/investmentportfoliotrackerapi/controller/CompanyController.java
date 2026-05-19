@@ -20,7 +20,7 @@ public class CompanyController {
 
     @PostMapping("/create")
     public ResponseEntity<CompanyDto> createCompany(@RequestBody CompanyDto companyDto) {
-        return ResponseEntity.ok(companyService.createCompany(companyDto));
+        return ResponseEntity.ok(companyService.addNewCompany(companyDto));
     }
 
     @PutMapping("/update/{id}")

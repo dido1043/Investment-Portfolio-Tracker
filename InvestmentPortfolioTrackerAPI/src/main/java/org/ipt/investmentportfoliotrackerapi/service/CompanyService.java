@@ -4,12 +4,15 @@ import lombok.AllArgsConstructor;
 import org.ipt.investmentportfoliotrackerapi.data.dto.CompanyDto;
 import org.ipt.investmentportfoliotrackerapi.data.model.Company;
 import org.ipt.investmentportfoliotrackerapi.repository.CompanyRepository;
-import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class CompanyService {
+
     private final CompanyRepository companyRepository;
     private final ModelMapper mapper;
 
@@ -19,7 +22,7 @@ public class CompanyService {
         return mapper.map(company, CompanyDto.class);
     }
 
-    public CompanyDto createCompany(CompanyDto companyDto) {
+    public CompanyDto addNewCompany(CompanyDto companyDto) {
         Company company = mapper.map(companyDto, Company.class);
         companyRepository.save(company);
 
