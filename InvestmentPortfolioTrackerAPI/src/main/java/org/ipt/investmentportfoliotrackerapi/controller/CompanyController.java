@@ -6,12 +6,18 @@ import org.ipt.investmentportfoliotrackerapi.service.CompanyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/company")
 @AllArgsConstructor
-
 public class CompanyController {
     private final CompanyService companyService;
+
+    @GetMapping("/all")
+    public ResponseEntity<List<CompanyDto>> getAllCompanies() {
+        return ResponseEntity.ok(companyService.getAllCompanies());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<CompanyDto> getCompany(@PathVariable Long id) {

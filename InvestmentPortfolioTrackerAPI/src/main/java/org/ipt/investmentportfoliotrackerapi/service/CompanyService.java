@@ -6,13 +6,21 @@ import org.ipt.investmentportfoliotrackerapi.data.model.Company;
 import org.ipt.investmentportfoliotrackerapi.repository.CompanyRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.modelmapper.ModelMapper;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class CompanyService {
     private final CompanyRepository companyRepository;
     private final ModelMapper mapper;
+
+    public List<CompanyDto> getAllCompanies() {
+        return companyRepository.findAll().stream()
+                .map(c -> mapper.map(c, CompanyDto.class))
+                .collect(Collectors.toList());
+    }
 
     public CompanyDto getCompanyById(Long companyId) {
         Company company = companyRepository.findById(companyId)

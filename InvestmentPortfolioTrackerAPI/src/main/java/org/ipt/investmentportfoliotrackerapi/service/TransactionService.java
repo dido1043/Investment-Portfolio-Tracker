@@ -9,6 +9,9 @@ import org.ipt.investmentportfoliotrackerapi.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class TransactionService {
@@ -16,6 +19,12 @@ public class TransactionService {
     private final AccountRepository accountRepository;
     private final CompanyRepository companyRepository;
     private final ModelMapper mapper;
+
+    public List<TransactionDto> getAllTransactionsByAccountId(Long accountId) {
+        return transactionRepository.findAllByAccountId(accountId).stream()
+                .map(t -> mapper.map(t, TransactionDto.class))
+                .collect(Collectors.toList());
+    }
 
     public TransactionDto getTransactionById(Long transactionId) {
         Transaction transaction = transactionRepository.findById(transactionId)

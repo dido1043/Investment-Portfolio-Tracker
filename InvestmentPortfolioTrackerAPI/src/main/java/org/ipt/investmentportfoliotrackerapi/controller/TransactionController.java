@@ -6,11 +6,18 @@ import org.ipt.investmentportfoliotrackerapi.service.TransactionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/transcation")
 @AllArgsConstructor
 public class TransactionController {
     private final TransactionService transactionService;
+
+    @GetMapping("/account/{accountId}")
+    public ResponseEntity<List<TransactionDto>> getAllByAccount(@PathVariable Long accountId) {
+        return ResponseEntity.ok(transactionService.getAllTransactionsByAccountId(accountId));
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<TransactionDto> getTransaction(@PathVariable Long id) {
@@ -27,8 +34,8 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.updateTransaction(id, transactionDto));
     }
 
-    @DeleteMapping("/delete{id}")
-    public ResponseEntity<String> deleteTranscation(@PathVariable Long id) {
-        return  ResponseEntity.ok(transactionService.deleteTransaction(id));
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteTransaction(@PathVariable Long id) {
+        return ResponseEntity.ok(transactionService.deleteTransaction(id));
     }
 }

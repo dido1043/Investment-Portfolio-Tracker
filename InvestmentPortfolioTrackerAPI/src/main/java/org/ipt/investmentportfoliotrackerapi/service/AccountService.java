@@ -8,6 +8,9 @@ import org.ipt.investmentportfoliotrackerapi.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class AccountService {
@@ -15,6 +18,12 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final UserRepository userRepository;
     private final ModelMapper mapper;
+
+    public List<AccountDto> getAllAccountsByUserId(Long userId) {
+        return accountRepository.findAllByUserId(userId).stream()
+                .map(a -> mapper.map(a, AccountDto.class))
+                .collect(Collectors.toList());
+    }
 
     public AccountDto getAccountById(Long accountId) {
         Account account = accountRepository.findById(accountId)
